@@ -6,9 +6,9 @@ import pandas as pd
 import numpy as np
 import altair as alt
 
-'''
-# DS Videos
-'''
+title = 'DS Toolkit'
+st.set_page_config(page_title=title)
+st.title(title)
 
 @st.cache_data(ttl=3600, show_spinner="Fetching data from API...")
 def get_video_data():
@@ -74,8 +74,8 @@ levels = (
         df
         .groupby("level")
         .agg(
-            Hours=("duration", np.sum),
-            Videos=("duration", np.size),
+            Hours=("duration", "sum"),
+            Videos=("duration", "size"),
         )
         .reindex(domain)
 )
