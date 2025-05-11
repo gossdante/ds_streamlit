@@ -12,7 +12,7 @@ st.title(title)
 
 @st.cache_data(ttl=3600, show_spinner="Fetching data from API...")
 def get_video_data():
-    response = requests.get('https://dsbuscar.com/.netlify/functions/getvideos')
+    response = requests.get('https://www.dreamingspanish.com/.netlify/functions/videos')
     return json.loads(response.text)
 
 
