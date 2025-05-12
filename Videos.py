@@ -15,8 +15,11 @@ def get_video_data():
     response = requests.get('https://www.dreamingspanish.com/.netlify/functions/videos')
     return json.loads(response.text)
 
+with open('dsvids51125.txt', 'r', encoding='utf-8') as file:
+    dsvids = file.read()
 
-video_data = get_video_data()
+video_data = json.loads(dsvids)
+# video_data = get_video_data()
 guides = pd.DataFrame.from_dict(video_data["guides"], orient='columns').sort_values(by=['isMainTeacher', 'name'], ascending=[False, True])
 df = pd.DataFrame.from_dict(video_data["videos"], orient='columns')
 
@@ -84,3 +87,6 @@ st.dataframe(levels, use_container_width=True, column_config={
     "level": "Level",
     "Videos": "# of Videos"
 })
+
+st.write('---')
+st.write('Forked from main branch on 5/11/25. Issue with API call so API result was grabbed maually from browser on 5/11/25 and saved to a file. Other changes to this application were made to use the stored copy instead of the API call.')

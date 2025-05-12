@@ -15,7 +15,12 @@ def get_video_data():
     response = requests.get('https://dsbuscar.com/.netlify/functions/getvideos')
     return json.loads(response.text)
 
-video_data = get_video_data()
+# video_data = get_video_data()
+with open('dsvids51125.txt', 'r', encoding='utf-8') as file:
+    dsvids = file.read()
+
+video_data = json.loads(dsvids)
+
 df = pd.DataFrame.from_dict(video_data["videos"], orient='columns')
 
 column_map = {
